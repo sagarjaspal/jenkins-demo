@@ -12,7 +12,7 @@ pipeline {
         stage ("Find Cer") {
             steps {
                 def files = sh (
-                    script : 'find . -name \*.cer'
+                    script : 'find . -type f -name *.cer'
                     returnStdout : true
                 )
                 echo "Files : ${files}"
