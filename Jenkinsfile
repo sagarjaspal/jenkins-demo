@@ -15,7 +15,7 @@ pipeline {
         stage ("Find Cer") {
             steps {
                 script {
-                    def allFilePathString = sh (
+                    String allFilePathString = sh (
                         script : 'find . -name *.cer',
                         returnStdout : true
                     )
@@ -29,9 +29,15 @@ pipeline {
                                 String shortFilePath = filePath.minus(envItem)
                                 int delim = shortFilePath.indexOf('/')
                                 String aliasName = shortFilePath.substring(0,delim)
-                                String fileName = shortFilePath.substring(delim+1)
 
-                                envMap.put(aliasName, fileName)
+                                String fingerprint = sh (
+                                    script : 'openssl x509 -noout -fingerprint -sha1 -inform pem -in ${filePath}',
+                                    returnStdout : true
+                                )
+
+                                fingerprint = fingerprint.substring(16)
+
+                                envMap.put(aliasName, fingerprint)
                             }
                         }
                         inputMap.put(envItem, envMap)
