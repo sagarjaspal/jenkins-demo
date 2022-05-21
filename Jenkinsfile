@@ -26,7 +26,7 @@ pipeline {
                         for(String filePath in allFilePathList) {
                             if (filePath.matches("${envItem}(.*)")) {
                                 String shortFilePath = filePath.minus(envItem)
-                                int delim = shortFilePath.indecOf('/')
+                                int delim = shortFilePath.indexOf('/')
                                 String aliasName = shortFilePath.substring(0,delim)
                                 String fileName = shortFilePath.substring(delim+1)
                                 def mapEntry = [:]
