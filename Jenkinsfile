@@ -12,7 +12,7 @@ pipeline {
         stage ("Find Cer") {
             steps {
                 script {
-                    def structure = sh find . -name \*.txt
+                    find . -name \*.cer
                 }
             }
         }
