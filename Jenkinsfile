@@ -13,7 +13,7 @@ pipeline {
             steps {
                 script {
                     def cerFiles = sh (
-                        script : 'find . -type f -name *.cer',
+                        script : 'tree -if --noreport .',
                         returnStdout : true
                     )
                     echo "Files : ${cerFiles}"
