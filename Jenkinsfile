@@ -1,11 +1,8 @@
 def inputMap = [:]
+def envList = ['./dev/','./sit/']
 
 pipeline {
     agent any
-
-    environment {
-        envList = ['./dev/','./sit/']
-    }
 
     stages {
         stage ("Say Hello") {
