@@ -31,7 +31,7 @@ pipeline {
                                 String aliasName = shortFilePath.substring(0,delim)
 
                                 String fingerprint = sh (
-                                    script : 'openssl x509 -noout -fingerprint -sha1 -inform pem -in ${filePath}',
+                                    script : "openssl x509 -noout -fingerprint -sha1 -inform pem -in ${filePath}",
                                     returnStdout : true
                                 )
 
