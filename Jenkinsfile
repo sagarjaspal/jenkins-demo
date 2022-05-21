@@ -23,19 +23,19 @@ pipeline {
                     def allFilePathList = allFilePathString.split('\n')
 
                     for(String envItem in envList) {
+                        def envMap = [:]
                         for(String filePath in allFilePathList) {
                             if (filePath.matches("${envItem}(.*)")) {
                                 String shortFilePath = filePath.minus(envItem)
                                 int delim = shortFilePath.indexOf('/')
                                 String aliasName = shortFilePath.substring(0,delim)
                                 String fileName = shortFilePath.substring(delim+1)
-                                def mapEntry = [:]
-                                mapEntry.put(aliasName, fileName)
-                                inputMap.put(envItem, mapEntry)
 
+                                envMap.put(aliasName, fileName)
                                 echo "${mapEntry}"
                             }
                         }
+                        inputMap.put(envItem, envMap)
                     }
 
                     echo "${inputMap}"
