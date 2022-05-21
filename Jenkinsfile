@@ -32,7 +32,6 @@ pipeline {
                                 String fileName = shortFilePath.substring(delim+1)
 
                                 envMap.put(aliasName, fileName)
-                                echo "${mapEntry}"
                             }
                         }
                         inputMap.put(envItem, envMap)
