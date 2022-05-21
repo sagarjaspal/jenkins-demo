@@ -13,7 +13,7 @@ pipeline {
             steps {
                 script {
                     def cerFiles = sh (
-                        script : 'dir /a-D /S /B',
+                        script : 'find . -name *.cer',
                         returnStdout : true
                     )
                     echo "Files : ${cerFiles}"
